@@ -1,1 +1,41 @@
+<script>
+    /**
+     * Run this script after initialization of Elementor on the front end
+     */
+    window.addEventListener( 'elementor/frontend/init', () => {
+        /**
+         * Target a specific type of element like 'loop-grid.post'
+         * To get the element name, please check 'data-widget_type' attribute
+         * Ref: https://prnt.sc/7KMQUEtn_7K1
+         */
+        elementorFrontend.hooks.addAction( 'frontend/element_ready/loop-grid.post', function($element) {
 
+            let elemSettings = JSON.parse($element[0].dataset.settings);
+            if(elemSettings.hasOwnProperty("alternate_template")){
+
+                let elem = Object.values($element)[0];
+                let indexPosition = 1;
+
+                elem.querySelectorAll('[data-elementor-type="loop-item"]').forEach(item=>{
+                    switch(indexPosition) {
+                        case 1:
+                            item.classList.add('first-item')
+                            break;
+                        case 2:
+                            item.classList.add('second-item')
+                            break;
+                        case 3:
+                            item.classList.add('third-item')
+                            break;
+                        case 4:
+                            item.classList.add('fourth-item')
+                            break;
+                        default:
+                    }
+                    indexPosition++;
+                })
+
+            }
+        })
+    })
+</script>
