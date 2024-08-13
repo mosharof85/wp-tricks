@@ -10,9 +10,11 @@
          */
         elementorFrontend.hooks.addAction( 'frontend/element_ready/loop-grid.post', function($element) {
 
+            //get the setting of the element
             let elemSettings = JSON.parse($element[0].dataset.settings);
             if(elemSettings.hasOwnProperty("alternate_template")){
 
+                //get the element dom
                 let elem = Object.values($element)[0];
                 let indexPosition = 1;
 
