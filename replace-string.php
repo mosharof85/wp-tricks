@@ -22,6 +22,22 @@ add_filter('elementor/frontend/the_content', function($content){
     return str_replace(array_keys($replace), $replace, $content);
 },99);
 
+add_filter('the_content', function($content){
+    $replace = array(
+        'Share With Friends' => 'Dieses Event teilen',
+        'Date And Time' => 'Datum und Uhrzeit'
+    );
+
+    $pattern = '/<div class="wpem-event-date-time">\s*(.*?)\s*<\/div>/s';
+
+    $result = preg_replace_callback($pattern, function($matches) {
+        $newContent = str_replace('to', 'bis', $matches[1]);
+        return $newContent . $matches[2];
+    }, $content);
+    
+    return str_replace(array_keys($replace), $replace, $result);
+},99);
+
 
 /***
  * This script is very powerful. But it creates problem with wp-rocket
