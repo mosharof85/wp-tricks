@@ -6,11 +6,6 @@
 
 <script>
 
-    /* code from https://element.how/animated-elementor-hamburger-menu-icons/
-    * copyright 2024 by element.how
-    * version 1.0 2024/06/23
-    */
-
     let menuPopupID = 1096;
     document.addEventListener('DOMContentLoaded', () => {
         const hamburger = document.querySelector('.hamburger');
@@ -36,6 +31,20 @@
                         elementorFrontend.documentsManager.documents[menuPopupID].getModal().hide();
                     }
                 })
+
+                jQuery( document ).on( 'elementor/popup/hide', ( event, id, instance ) => {
+                    if(id===menuPopupID){
+                        setTimeout(function (){
+                            if (hamburger.classList.contains('is-active')) {
+                                hamburger.classList.remove('is-active');
+                                document.querySelectorAll('.elementor-location-header .elementor-element.elementor-widget:not(.elementor-widget-html)').forEach(item=>{
+                                    item.classList.remove('hidden')
+                                })
+                                document.querySelector('.elementor-location-header').classList.remove('high-index');
+                            }
+                        }, 200)
+                    }
+                } );
             }
         }
     });
