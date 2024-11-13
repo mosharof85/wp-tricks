@@ -1,0 +1,6 @@
+(function ($){
+    var swiper = ($ ( '.elementor-element-5b393ac .elementor-main-swiper.swiper' ).data( 'swiper' ))
+    swiper.params.slidesPerView = 1.2
+    swiper.params.spaceBetween = 12;
+    swiper.update();
+})(jQuery)
