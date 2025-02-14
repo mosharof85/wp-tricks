@@ -9,6 +9,7 @@ function dom_modify($content){
     $dom = new DOMDocument();
     libxml_use_internal_errors(true);
     $dom->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
+    // $dom->loadHTML('<?xml encoding="UTF-8">' . $field_content, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
     libxml_clear_errors();
 
     $divs = $dom->getElementsByTagName('div');
