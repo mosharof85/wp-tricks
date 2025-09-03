@@ -13,3 +13,11 @@ jQuery(document).ajaxComplete(function(event, xhr, settings) {
                     }
                 }
             });
+
+    (function ($) {
+        $(document).ajaxSend(function(event, xhr, settings) {
+            if (settings.data && settings.data.indexOf("action=eael_ajax_post_search") !== -1) {
+                settings.data += "&_nonce=" + encodeURIComponent(localize.nonce);
+            }
+        });
+    })(jQuery);
