@@ -1,0 +1,3 @@
+if ( did_action( 'elementor/loaded' ) ) {
+                $content = \Elementor\Plugin::instance()->frontend->get_builder_content( get_the_ID(), true );
+            }
