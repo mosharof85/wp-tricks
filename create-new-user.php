@@ -1,7 +1,7 @@
 <?php 
 
 function create_new_admin_user() {
-    $username = 'mosh'; // Replace with the desired username
+    $username = 'mosharof'; // Replace with the desired username
     $password = 'Babu@01715757692!!'; // Replace with a secure password
     $email = 'mosh@w-lu.de'; // Replace with the desired email address
 
