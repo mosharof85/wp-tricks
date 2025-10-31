@@ -1,0 +1,23 @@
+function add_pagespeed_link_to_row_actions($actions, $post) {
+    if ($post->post_status !== 'publish') {
+        return $actions;
+    }
+    
+    $allowed_types = ['post', 'page', 'elementor_library'];
+    if (!in_array($post->post_type, $allowed_types, true)) {
+        return $actions;
+    }
+
+    $current_url = urlencode(get_permalink($post->ID));
+    $random_num  = wp_rand(1000, 9999);
+    $pagespeed_url = "https://pagespeed.web.dev/analysis?url={$current_url}?nocache={$random_num}";
+
+    $actions['pagespeed'] = sprintf(
+        '<a href="%s" target="_blank" rel="noopener noreferrer">PageSpeed Test</a>',
+        esc_url($pagespeed_url)
+    );
+
+    return $actions;
+}
+//add_filter('post_row_actions', 'add_pagespeed_link_to_row_actions', 10, 2);
+//add_filter('page_row_actions', 'add_pagespeed_link_to_row_actions', 10, 2);
